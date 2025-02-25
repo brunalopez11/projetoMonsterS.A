@@ -1,62 +1,29 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monstros S.A.</title>
-    <link rel="stylesheet" href="cadastro.css">
-    <script src="script.js"></script>
+    <title>Cadastro - Monstros S.A.</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="app.js"></script>
+
 </head>
 <body>
-    <header>
-        <nav>
-            <a href="index.html">Home</a>
-            <a href="sobre.html">Sobre a empresa</a>
-        </nav>
-        <h1>Monstros S.A.</h1>
-        <p>Uma empresa de qualidade.</p>
-        <p>Preencha o formulário e envie seus dados!</p>
-    </header>
-    <form id="registrationForm>
-        <div class="container"></div>
-        <div class="form-group">
-            <label for="nome">Nome completo:</label>
-            <input type="text" id="nome" placeholder="Seu nome" required>
-        </div>
-        <div class="form-group">
-            <label for="email">E-mail:</label>
-            <input type="email" id="email" placeholder="Seu e-mail" required>
-        </div>
-        <div class="form-group">
-            <label for="login">Login:</label>
-            <input type="text" id="login" placeholder="Seu login" required>
-        </div>
-        <div class="form-group">
-            <label for="senha">Senha:</label>
-            <input type="password" id="senha" placeholder="Sua senha" required>
-        </div>
+    <h2>Cadastre-se</h2>
+    <form id="registrationForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" required>
 
-        <button onclick="enviarDados()">Enviar</button>
-        <button id="alreadyRegistered">Já cadastrado</button>
-    </div>
-</form>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" required>
 
-    <div class="image-container">
-        <img src="img/Group 1.png" alt="Personagens de Monstros S.A." style="width: 300px;">
-    </div>
+        <label for="login">Login:</label>
+        <input type="text" id="login" required>
 
-    <footer>
-        <p>Desenvolvido por Monstros S.A.</p>
-    </footer>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" required>
 
-    <script>
-        function enviarDados() {
-            alert("Dados enviados!");
-        }
-        
-        function jaCadastrado() {
-            alert("Redirecionando para login...");
-        }
-    </script>
+        <button type="submit">Cadastrar</button>
+        <button type="button" id="alreadyRegistered">Já cadastrado</button>
+    </form>
 </body>
 </html>

@@ -1,41 +1,47 @@
-document.getElementById('registrationForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Impede o envio padrão do formulário
+document.addEventListener('DOMContentLoaded', function () {
+    // Cadastro de usuário
+    document.getElementById('registrationForm')?.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-    // Coleta dados do formulário
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const login = document.getElementById('login').value;
-    const password = document.getElementById('password').value;
+        const name = document.getElementById('nome').value;
+        const email = document.getElementById('email').value;
+        const login = document.getElementById('login').value;
+        const password = document.getElementById('senha').value;
 
-    // Criação de um objeto com os dados
-    const userData = {
-        name: name,
-        email: email,
-        login: login,
-        password: password
-    };
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        users.push({ name, email, login, password });
+        localStorage.setItem("users", JSON.stringify(users));
 
-    // Salva os dados no LocalStorage
-    localStorage.setItem(login, JSON.stringify(userData));
+        alert('Cadastrado com sucesso!');
+        document.getElementById('registrationForm').reset();
+    });
 
-    // Limpa o formulário
-    document.getElementById('registrationForm').reset();
-    
-    alert('Cadastrado com sucesso!');
-});
+    // Login de usuário
+    document.getElementById('loginForm')?.addEventListener('submit', function(event) {
+        event.preventDefault();
 
-// Lógica para o botão "Já cadastrado"
-document.getElementById('alreadyRegistered').addEventListener('click', function() {
-    const login = prompt('Digite seu login:');
+        const login = document.getElementById('loginInput').value;
+        const password = document.getElementById('senhaInput').value;
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(u => u.login === login && u.password === password);
 
-    if (login) {
-        const storedUser = localStorage.getItem(login);
-        
-        if (storedUser) {
-            const user = JSON.parse(storedUser);
+        if (user) {
+            alert(`Bem-vindo de volta, ${user.name}!`);
+        } else {
+            alert('Login ou senha incorretos.');
+        }
+    });
+
+    // Verificação de usuário já cadastrado
+    document.getElementById('alreadyRegistered')?.addEventListener('click', function() {
+        const login = prompt('Digite seu login:');
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        const user = users.find(u => u.login === login);
+
+        if (user) {
             alert(`Bem-vindo de volta, ${user.name}!`);
         } else {
             alert('Usuário não encontrado.');
         }
-    }
+    });
 });
